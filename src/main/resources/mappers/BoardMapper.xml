@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.tukorea.myweb.mapper.BoardMapper">
+  
+
+     <insert id="insert"> 
+   		insert into board_free (title, content, score, movierank) values
+ 		(#{title}, #{content}, #{score}, #{movierank})
+     </insert> 
+ 	
+     <select id="selectByid" resultType="org.tukorea.myweb.domain.BoardVO">
+ 		select * from board_free where bno =#{bno}
+     </select>
+ 	
+     <select id="selectAll" resultType="org.tukorea.myweb.domain.BoardVO">
+     <![CDATA[
+ 		select * from board_free
+      ]]> 
+     </select>
+     
+     <update id="update" parameterType="BoardVO">
+	 	update board_free
+	 	set title = #{title}, content = #{content}, score = #{score}
+	 	where bno = #{bno}
+    </update>
+ 
+    <select id="selectByMovieRank" resultType="org.tukorea.myweb.domain.BoardVO">
+       select * from board_free where movierank =#{movierank}
+    </select>
+ 
+    <delete id="delete">
+		delete from board_free where bno = #{bno}
+    </delete>
+
+	
+</mapper>  
