@@ -15,24 +15,30 @@ import org.tukorea.myweb.domain.BoardVO;
 @Component
 public class BoardAspect {
 	
-//	@Before("execution(* org.tukorea.myweb.persistence.*.read(..) )")
-//	public void beforeMethod(JoinPoint jp) {
-//
-//		System.out.println(" [BeforeMethod] : 메소드 호출 전 //////////////////////////////////////////////");
-//		Signature sig = jp.getSignature();
-//		System.out.println(" 메소드 이름: " + sig.getName());
-//		Object[] obj = jp.getArgs();
-//		System.out.println(" 인수 값: " + obj[0]);
-//	}
-
-	@Before("execution(* readBoard(int))")
-	public void afterMethod() {
-		 System.out.println("---------------before매서드 동작--------------");
+	@After("execution(* org.tukorea.myweb.persistence.*.read(..) )")
+	public void BeforeModify(JoinPoint jp) {
+		 System.out.println("---------------수정 전--------------");
+		 Signature sig = jp.getSignature();
+		 Object[] obj = jp.getArgs();
+		 System.out.println(obj[0]+"번 게시판 수정 예정");
+		 System.out.println("-----------------------------------");
+	}
+	
+	@After("execution(* org.tukorea.myweb.persistence.*.readList(..) )")
+	public void afterMethod(JoinPoint jp) {
+		 System.out.println("---------------게시판 진입--------------");
+		 Signature sig = jp.getSignature();
+		 System.out.println(" 메소드 이름: " + sig.getName());
+		 System.out.println("-----------------------------------");
 	}
 	
 	@Before("execution(* deleteBoard(int))")
-	public void Beforedelete() {
-		 System.out.println("---------------before매서드 동작--------------");
+	public void Beforedelete(JoinPoint jp) {
+		 System.out.println("---------------삭제 전--------------");
+		 Signature sig = jp.getSignature();
+		 Object[] obj = jp.getArgs();
+		 System.out.println(obj[0]+"번 게시판 삭제");
+		 System.out.println("-----------------------------------");
 	}
 
 }

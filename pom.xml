@@ -9,7 +9,8 @@
 	<properties>
 		<java-version>1.11</java-version>
 		<org.springframework-version>5.2.19.RELEASE</org.springframework-version>
-		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.aspectj-version>1.9.8</org.aspectj-version>
+		 <logback.version>1.2.10</logback.version>
 		<org.slf4j-version>1.7.35</org.slf4j-version>
 		<maven.compiler.source>1.11</maven.compiler.source>
 		<maven.compiler.target>1.11</maven.compiler.target>
@@ -32,6 +33,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
+		</dependency>
+			<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 
 				<!-- Spring JDBC Artifacts -->
@@ -79,12 +86,17 @@
 		    <version>2.12.6</version>
 		</dependency>
 		
-		<!-- AspectJ -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>${org.aspectj-version}</version>
-		</dependency>	
+	<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+	    <dependency>
+	      	<groupId>org.aspectj</groupId>
+	      	<artifactId>aspectjrt</artifactId>
+	      	<version>${org.aspectj-version}</version>
+	    </dependency>
+	    <dependency>
+	      	<groupId>org.aspectj</groupId>
+	      	<artifactId>aspectjtools</artifactId>
+	      	<version>${org.aspectj-version}</version>
+	    </dependency>
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>

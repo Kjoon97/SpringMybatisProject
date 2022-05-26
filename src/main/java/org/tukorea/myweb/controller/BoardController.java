@@ -17,7 +17,6 @@ import java.util.Date;
 @RequestMapping(value="/board")
 public class BoardController {
 	private Date registerDate;
-	private Date updateDate;
 	private int boardnum;
 	private int rank;
 	
@@ -64,8 +63,6 @@ public class BoardController {
 	 @RequestMapping(value = "/modify/movie{num}", method = RequestMethod.GET)
 	    public String modifyBoardGet(@PathVariable int num, @RequestParam("bno") int bno, Model model) throws Exception {
 	    	BoardVO board = bs.readBoard(bno);
-		    registerDate = board.getRegdate();
-		    updateDate = board.getUpdatedate();
 		    boardnum = board.getBno();
 		    rank = board.getMovierank();
 		    model.addAttribute("num",num);
@@ -77,8 +74,6 @@ public class BoardController {
      @RequestMapping(value = "/modify/movie{num}", method = RequestMethod.POST)
      public String modifyBoardPost(@ModelAttribute("board") BoardVO vo, @PathVariable int num) throws Exception {
 
-         vo.setRegdate(registerDate);
-		 vo.setUpdatedate(updateDate);
 		 vo.setBno(boardnum);
 		 vo.setMovierank(rank);
     	 bs.updateBoard(vo,num);

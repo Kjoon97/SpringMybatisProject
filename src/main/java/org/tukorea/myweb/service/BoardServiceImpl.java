@@ -31,15 +31,15 @@ public class BoardServiceImpl implements BoardService{
 		return boardDAO.read(bno);
 	}
 
+	public void deleteBoard(int bno) throws Exception {
+		// TODO Auto-generated method stub
+		boardDAO.delete(bno);
+	}
+	
 	@Transactional(propagation=Propagation.REQUIRED)
 	public float updateBoard(BoardVO board, int movierank) throws Exception {
 		boardDAO.update(board);
 		return calculateTotalScore(movierank);    //boardDAO.readbyrank(movierank)와 boardDAO.update(board) 트랜잭션 처리.
-	}
-
-	public void deleteBoard(int bno) throws Exception {
-		// TODO Auto-generated method stub
-		boardDAO.delete(bno);
 	}
 
 	public float calculateTotalScore(int movierank) throws Exception {

@@ -24,7 +24,7 @@
      
      <update id="update" parameterType="BoardVO">
 	 	update board_free
-	 	set title = #{title}, content = #{content}, score = #{score}
+	 	set title = #{title}, content = #{content}, score = #{score}, regdate =now()
 	 	where bno = #{bno}
     </update>
  

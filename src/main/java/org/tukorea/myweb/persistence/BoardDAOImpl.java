@@ -64,8 +64,4 @@ public class BoardDAOImpl implements BoardDAO{
 		return boardlist;
 	}
 
-	public int countboard(int movierank) throws Exception {
-		
-		return sqlSession.selectOne(namespace+ ".countboards", movierank);
-	}
 }

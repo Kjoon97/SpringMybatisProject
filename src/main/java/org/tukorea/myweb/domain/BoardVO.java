@@ -19,9 +19,6 @@ public class BoardVO {
 	//등록 날짜
 	private Date regdate;
 	
-	//수정 날짜
-	private Date updatedate;
-	
 	//영화 순위
 	private int movierank;
 
@@ -73,18 +70,10 @@ public class BoardVO {
 		this.regdate = regdate;
 	}
 
-	public Date getUpdatedate() {
-		return updatedate;
-	}
-
-	public void setUpdatedate(Date updatedate) {
-		this.updatedate = updatedate;
-	}
-
 	@Override
 	public String toString() {
 		return "BoardVO [bno=" + bno + ", title=" + title + ", content=" + content + ", score=" + score + ", regdate="
-				+ regdate + ", updatedate=" + updatedate + "]";
+				+ regdate +  "]";
 	}
 	
 }

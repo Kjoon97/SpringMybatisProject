@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ page session="false" %>
 <html>
 <head>
@@ -99,7 +100,7 @@
 								점
 							</div>
 							<div class="col-4 text-right">
-								<c:out value="${board.bno}" />
+								<fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${board.regdate}"/>
 							</div>
 						</div>
 					</div>
