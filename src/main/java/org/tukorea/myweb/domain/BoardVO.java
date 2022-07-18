@@ -19,15 +19,15 @@ public class BoardVO {
 	//등록 날짜
 	private Date regdate;
 	
-	//영화 순위
-	private int movierank;
-
-	public int getMovierank() {
-		return movierank;
+	//영화 아이디
+	private String movieId;
+	
+	public String getMovieId() {
+		return movieId;
 	}
 
-	public void setMovierank(int movierank) {
-		this.movierank = movierank;
+	public void setMovieID(String movieId) {
+		this.movieId = movieId;
 	}
 
 	public int getBno() {

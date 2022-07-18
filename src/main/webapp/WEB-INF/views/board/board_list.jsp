@@ -75,7 +75,7 @@
     
     <div class="container">
     <div id="rvbtn">
-     <a class="btn btn-outline-warning" id ="rvbtn2" href="http://localhost:8080/myweb/board/register/movie<c:out value="${num}"/>">리뷰하기</a>
+     <a class="btn btn-outline-warning" id ="rvbtn2" href="http://localhost:8080/myweb/board/register/movie<c:out value="${movieId}"/>">리뷰하기</a>
       &nbsp
      <c:choose>
 		<c:when test="${'NaN' == totalScore}"><span style="color: #ffff00;">총 평점 : 0.0점</span></c:when>
@@ -83,7 +83,7 @@
 	</c:choose>
      </div>
 			<c:forEach var="board" items="${boards}">
-			  <c:if test="${num eq board.movierank}">         <!-- num번 영화와 관련한 게시글만 출력 -->
+			  <c:if test="${movieId eq board.movieId}">         <!-- movieId번 영화와 관련한 게시글만 출력 -->
 				<div class="card bg-light mt-3">
 					<!-- 배경 흰색, 위쪽으로 3만큼 여백주기 -->
 					<div class="card-header bg-light">
@@ -114,9 +114,10 @@
 
 						<div class="text-right">
 							<a
-								href="http://localhost:8080/myweb/board/modify/movie<c:out value="${num}"/>?bno=<c:out value="${board.bno}"/>"
-								class="btn btn-outline-info">수정</a> <a
-								href="http://localhost:8080/myweb/board/delete/movie<c:out value="${num}"/>?bno=<c:out value="${board.bno}"/>"
+								href="http://localhost:8080/myweb/board/modify/movie<c:out value="${movieId}"/>?bno=<c:out value="${board.bno}"/>"
+								class="btn btn-outline-info">수정</a> 
+								<a
+							    href="http://localhost:8080/myweb/board/delete/movie<c:out value="${movieId}"/>?bno=<c:out value="${board.bno}"/>"
 								class="btn btn-outline-danger">삭제</a>
 						</div>
 					</div>
@@ -144,18 +145,24 @@
 	    })
 	}
 
-	function showMovies(data){
-		var text="${num}";
-	    data = data[text-1];
-	    console.log(data);
-	    console.log(data.title);
-	    var title = data.title;
-	    var overview = data.overview;
-	    var imge = "<img src="+IMG_URL+data.poster_path+">";
-	    console.log(title);
-	    document.getElementById("movieTitle").innerHTML=title;
-	    document.getElementById("overview").innerHTML=overview;
-	    document.getElementById("poster").innerHTML=imge;
+	function showMovies(movies){          //movies = 영화 목록들
+		var movieId ="${movieId}"         //url request로 들어온 movieId 저장.
+		console.log(movieId)
+		
+		for (const movie of movies){
+			console.log(movie)
+			console.log(movie.id)
+			if(movie.id == movieId){               //url request의 movieId와 일치하는 영화 정보(제목,줄거리,이미지)출력.                        
+				console.log("아이디 일치")
+				var title = movie.title;
+			    var overview = movie.overview;
+			    var imge = "<img src="+IMG_URL+movie.poster_path+">";
+			    console.log(title);
+			    document.getElementById("movieTitle").innerHTML=title;
+			    document.getElementById("overview").innerHTML=overview;
+			    document.getElementById("poster").innerHTML=imge;
+			}
+		}
 	}
 	</script>
 	</main>

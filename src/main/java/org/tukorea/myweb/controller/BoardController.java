@@ -18,67 +18,63 @@ import java.util.Date;
 public class BoardController {
 	private Date registerDate;
 	private int boardnum;
-	private int rank;
 	
 	@Autowired
 	private BoardService bs;
 	
 	//리스트 조회
-	@RequestMapping(value = {"/list/movie{num}"}, method = RequestMethod.GET)
-	public String getBoardList(@PathVariable int num, Model model) throws Exception {
+	@RequestMapping(value = {"/list/movie{movieId}"}, method = RequestMethod.GET)
+	public String getBoardList(@PathVariable String movieId, Model model) throws Exception {
 
-		float totalScore = bs.calculateTotalScore(num);
+		float totalScore = bs.calculateTotalScore(movieId);
 		model.addAttribute("totalScore", totalScore);
-		model.addAttribute("num", num);
+		model.addAttribute("movieId", movieId);
 		model.addAttribute("boards", bs.readBoardList());
-		int num2=22;
-		model.addAttribute("num2", num2);
+
 		 return "board/board_list";
 	}
 	
 	//게시판 등록
-	@RequestMapping(value = {"/register/movie{num}"}, method = RequestMethod.GET)
-	public String registerBoardGet(@PathVariable int num, Model model) throws Exception {
+	@RequestMapping(value = {"/register/movie{movieId}"}, method = RequestMethod.GET)
+	public String registerBoardGet(@PathVariable String movieId, Model model) throws Exception {
 
-		 model.addAttribute("num", num);
+		 model.addAttribute("movieId", movieId);
 		 return "board/board_register";
 	}
 	
 	//게시판 등록
-	@RequestMapping(value = {"/register/movie{num}"}, method = RequestMethod.POST)
-	public String registerBoardPost(@PathVariable int num, @ModelAttribute("board") BoardVO vo) throws Exception {
-		vo.setMovierank(num);
+	@RequestMapping(value = {"/register/movie{movieId}"}, method = RequestMethod.POST)
+	public String registerBoardPost(@PathVariable String movieId, @ModelAttribute("board") BoardVO vo) throws Exception {
+		vo.setMovieID(movieId);
 		bs.addBoard(vo);
-		return "redirect:/board/list/movie"+num;
+		return "redirect:/board/list/movie"+movieId;
 	}
 	
 	//게시판 삭제
-	 @RequestMapping(value="/delete/movie{num}", method = RequestMethod.GET)
-	    public String deleteBoardGet(@PathVariable int num, @RequestParam("bno") int bno) throws Exception {
+	 @RequestMapping(value="/delete/movie{movieId}", method = RequestMethod.GET)
+	    public String deleteBoardGet(@PathVariable String movieId, @RequestParam("bno") int bno) throws Exception {
 	    	bs.deleteBoard(bno);
-	    	return "redirect:/board/list/movie"+num;
+	    	return "redirect:/board/list/movie"+movieId;
 	 }
 	 
 	 //게시판 수정
-	 @RequestMapping(value = "/modify/movie{num}", method = RequestMethod.GET)
-	    public String modifyBoardGet(@PathVariable int num, @RequestParam("bno") int bno, Model model) throws Exception {
+	 @RequestMapping(value = "/modify/movie{movieId}", method = RequestMethod.GET)
+	    public String modifyBoardGet(@PathVariable String movieId, @RequestParam("bno") int bno, Model model) throws Exception {
 	    	BoardVO board = bs.readBoard(bno);
 		    boardnum = board.getBno();
-		    rank = board.getMovierank();
-		    model.addAttribute("num",num);
+		    model.addAttribute("movieId",movieId);
 		    model.addAttribute("board", board);
 		 
 	        return "board/board_modify";
 	    }
 	 //게시판 수정  
-     @RequestMapping(value = "/modify/movie{num}", method = RequestMethod.POST)
-     public String modifyBoardPost(@ModelAttribute("board") BoardVO vo, @PathVariable int num) throws Exception {
+     @RequestMapping(value = "/modify/movie{movieId}", method = RequestMethod.POST)
+     public String modifyBoardPost(@ModelAttribute("board") BoardVO vo, @PathVariable String movieId) throws Exception {
 
 		 vo.setBno(boardnum);
-		 vo.setMovierank(rank);
-    	 bs.updateBoard(vo,num);
+    	 bs.updateBoard(vo,movieId);
     	 
-    	 return "redirect:/board/list/movie"+num;
+    	 return "redirect:/board/list/movie"+movieId;
 	 }
 
 }

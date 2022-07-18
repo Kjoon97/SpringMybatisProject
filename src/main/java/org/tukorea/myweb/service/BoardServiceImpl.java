@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.tukorea.myweb.domain.BoardVO;
 import org.tukorea.myweb.persistence.BoardDAO;
-
+ 
 @Service
 public class BoardServiceImpl implements BoardService{
 
@@ -37,15 +37,15 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED)
-	public float updateBoard(BoardVO board, int movierank) throws Exception {
+	public float updateBoard(BoardVO board, String movieId) throws Exception {
 		boardDAO.update(board);
-		return calculateTotalScore(movierank);    //boardDAO.readbyrank(movierank)와 boardDAO.update(board) 트랜잭션 처리.
+		return calculateTotalScore(movieId);    //boardDAO.readbyrank(movierank)와 boardDAO.update(board) 트랜잭션 처리.
 	}
 
-	public float calculateTotalScore(int movierank) throws Exception {
+	public float calculateTotalScore(String movieId) throws Exception {
 		float sum=0;
 		int i =0;
-		List<BoardVO> boards = boardDAO.readbyrank(movierank);
+		List<BoardVO> boards = boardDAO.readbyMovieId(movieId);
 		boards.size();
 		for (BoardVO board : boards) {
 			String score = board.getScore();

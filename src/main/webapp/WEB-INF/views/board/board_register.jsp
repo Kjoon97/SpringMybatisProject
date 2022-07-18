@@ -61,7 +61,7 @@ select {
 <body>
 	<div align=center>
 		<h2>register</h2>
-		<form name=registerform action="http://localhost:8080/myweb/board/register/movie<c:out value="${num}"/>" method="post">
+		<form name=registerform action="http://localhost:8080/myweb/board/register/movie<c:out value="${movieId}"/>" method="post">
 		<table>	
 			<tr><th>title</th><td><input id ="title" type="text" name="title" autofocus placeholder="제목을 입력하세요"></td></tr>
 			<tr><th>content</th><td><textarea id ="content" type="text" name="content" placeholder="내용을 입력하세요"></textarea></td></tr>

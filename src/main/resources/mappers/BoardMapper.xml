@@ -8,32 +8,32 @@
   
 
      <insert id="insert"> 
-   		insert into board_free (title, content, score, movierank) values
- 		(#{title}, #{content}, #{score}, #{movierank})
+   		insert into board (title, content, score, movieId) values
+ 		(#{title}, #{content}, #{score}, #{movieId})
      </insert> 
  	
      <select id="selectByid" resultType="org.tukorea.myweb.domain.BoardVO">
- 		select * from board_free where bno =#{bno}
+ 		select * from board where bno =#{bno}
      </select>
  	
      <select id="selectAll" resultType="org.tukorea.myweb.domain.BoardVO">
      <![CDATA[
- 		select * from board_free
+ 		select * from board
       ]]> 
      </select>
      
      <update id="update" parameterType="BoardVO">
-	 	update board_free
+	 	update board
 	 	set title = #{title}, content = #{content}, score = #{score}, regdate =now()
 	 	where bno = #{bno}
     </update>
  
-    <select id="selectByMovieRank" resultType="org.tukorea.myweb.domain.BoardVO">
-       select * from board_free where movierank =#{movierank}
+    <select id="selectByMovieId" resultType="org.tukorea.myweb.domain.BoardVO">
+       select * from board where movieId =#{movieId}
     </select>
  
     <delete id="delete">
-		delete from board_free where bno = #{bno}
+		delete from board where bno = #{bno}
     </delete>
 
 	

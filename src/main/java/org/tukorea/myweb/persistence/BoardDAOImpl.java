@@ -51,16 +51,16 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 
-	public int totalscore(int movierank) throws Exception {
-		int totalscore = sqlSession.selectOne(namespace+ ".selectTotalScore", movierank);
+	public int totalscore(String movieId) throws Exception {
+		int totalscore = sqlSession.selectOne(namespace+ ".selectTotalScore", movieId);
 		return totalscore;
 	}
 
 
-	public List<BoardVO> readbyrank(int movierank) throws Exception {
+	public List<BoardVO> readbyMovieId(String movieId) throws Exception {
 		// TODO Auto-generated method stub
 		List<BoardVO> boardlist = new ArrayList<BoardVO>();
-		boardlist = sqlSession.selectList(namespace+ ".selectByMovieRank", movierank);
+		boardlist = sqlSession.selectList(namespace+ ".selectByMovieId", movieId);
 		return boardlist;
 	}
 

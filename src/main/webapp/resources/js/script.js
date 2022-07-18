@@ -20,7 +20,7 @@ function showMovies(data){
     main.innerHTML='';
     i=1
   //  data = data.slice(0,10);
-    console.log(data)
+    console.log(data)            //영화 데이터 
 
     data.forEach(movie =>{
         const{id, title, poster_path, vote_average, overview} = movie;
@@ -28,7 +28,7 @@ function showMovies(data){
         movieE1.classList.add('movie');
 
         movieE1.innerHTML = `
-        <div id="movie${i}" onclick='goToBoard(${i})' style='cursor:pointer;'>
+        <div id="movie${id}" onclick='goToBoard(${id})' style='cursor:pointer;'>
         <img src="${IMG_URL+poster_path}" alt="${title}">
         
         <div class="movie-info">
@@ -59,6 +59,6 @@ function getColor(vote){
     }
 }
 
-function goToBoard(i){
-    location.href= "board/list/movie"+i;
+function goToBoard(id){
+    location.href= "board/list/movie"+id;
 }

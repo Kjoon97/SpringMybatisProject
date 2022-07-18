@@ -10,5 +10,5 @@ public interface BoardDAO {
 	public BoardVO read(int bno) throws Exception;
 	public void delete(int bno) throws Exception;
 	public void update(BoardVO board) throws Exception;
-	public List<BoardVO> readbyrank(int movierank) throws Exception;
+	public List<BoardVO> readbyMovieId(String movieId) throws Exception;
 }
