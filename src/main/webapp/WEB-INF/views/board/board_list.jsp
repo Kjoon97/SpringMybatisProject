@@ -83,7 +83,7 @@
 	</c:choose>
      </div>
 			<c:forEach var="board" items="${boards}">
-			  <c:if test="${movieId eq board.movieId}">         <!-- movieId번 영화와 관련한 게시글만 출력 -->
+		 <!--	  <c:if test="${movieId eq board.movieId}">         movieId번 영화와 관련한 게시글만 출력 -->
 				<div class="card bg-light mt-3">
 					<!-- 배경 흰색, 위쪽으로 3만큼 여백주기 -->
 					<div class="card-header bg-light">
@@ -122,7 +122,7 @@
 						</div>
 					</div>
 				 </div>
-				</c:if>
+			<!-- 	</c:if> -->
 			</c:forEach>
 		<br>
               <br>

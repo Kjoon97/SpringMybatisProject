@@ -21,9 +21,9 @@ public class BoardServiceImpl implements BoardService{
 		boardDAO.add(board);
 	}
 
-	public List<BoardVO> readBoardList() throws Exception {
+	public List<BoardVO> readBoardList(String movieId) throws Exception {
 		// TODO Auto-generated method stub
-		return boardDAO.readList();
+		return boardDAO.readListbyMovieId(movieId);
 	}
 
 	public BoardVO readBoard(int bno) throws Exception {

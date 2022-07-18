@@ -9,7 +9,7 @@ public interface BoardService {
 	//게시판 등록
 	public void addBoard(BoardVO board) throws Exception;
 	//게시판 목록
-	public List<BoardVO> readBoardList() throws Exception;
+	public List<BoardVO> readBoardList(String movieId) throws Exception;
 	//게시판 조회
 	public BoardVO readBoard(int bno) throws Exception;
 	//게시판 수정

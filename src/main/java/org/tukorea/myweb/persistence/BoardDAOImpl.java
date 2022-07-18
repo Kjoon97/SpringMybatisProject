@@ -23,10 +23,18 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 
-	public List<BoardVO> readList() throws Exception {
+	/*
+	 * public List<BoardVO> readList() throws Exception { // TODO Auto-generated
+	 * method stub List<BoardVO> boardlist = new ArrayList<BoardVO>(); boardlist =
+	 * sqlSession.selectList(namespace + ".selectAll");
+	 * 
+	 * return boardlist; }
+	 */
+	
+	public List<BoardVO> readListbyMovieId(String movieId) throws Exception {
 		// TODO Auto-generated method stub
 		List<BoardVO> boardlist = new ArrayList<BoardVO>();
-		boardlist = sqlSession.selectList(namespace + ".selectAll");
+		boardlist = sqlSession.selectList(namespace + ".selectByMovieId", movieId);
 		
 		return boardlist;
 	}

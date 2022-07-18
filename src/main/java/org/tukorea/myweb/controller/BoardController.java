@@ -12,6 +12,7 @@ import org.tukorea.myweb.domain.BoardVO;
 import org.tukorea.myweb.service.BoardService;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping(value="/board")
@@ -22,6 +23,7 @@ public class BoardController {
 	@Autowired
 	private BoardService bs;
 	
+	
 	//리스트 조회
 	@RequestMapping(value = {"/list/movie{movieId}"}, method = RequestMethod.GET)
 	public String getBoardList(@PathVariable String movieId, Model model) throws Exception {
@@ -29,8 +31,13 @@ public class BoardController {
 		float totalScore = bs.calculateTotalScore(movieId);
 		model.addAttribute("totalScore", totalScore);
 		model.addAttribute("movieId", movieId);
-		model.addAttribute("boards", bs.readBoardList());
-
+		model.addAttribute("boards", bs.readBoardList(movieId));
+		
+		List<BoardVO> boardList = bs.readBoardList(movieId);
+		for(BoardVO board : boardList) {
+			System.out.println(board.toString());
+		}
+		
 		 return "board/board_list";
 	}
 	

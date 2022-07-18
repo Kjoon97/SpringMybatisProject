@@ -32,24 +32,24 @@ public class BoardTest {
 	}
 
 	//게시물 리스트 조회 테스트
-	@Test
-	public void testModifyBoard() throws Exception{
-		BoardVO board1 = new BoardVO();
-		board1.setTitle("테스트 제목1");
-		board1.setContent("테스트 내용1");
-		board1.setScore("테스트 점수1");
-		bs.addBoard(board1);
-		
-		BoardVO board2 = new BoardVO();
-		board2.setTitle("테스트 제목2");
-		board2.setContent("테스트 내용2");
-		board2.setScore("테스트 점수2");
-		bs.addBoard(board2);
-
-		List<BoardVO> boardVOS = bs.readBoardList();
-		for (BoardVO boardVO : boardVOS) {
-			System.out.println("boardVO = " + boardVO.getTitle());
-		}
-	}
+//	@Test
+//	public void testModifyBoard() throws Exception{
+//		BoardVO board1 = new BoardVO();
+//		board1.setTitle("테스트 제목1");
+//		board1.setContent("테스트 내용1");
+//		board1.setScore("테스트 점수1");
+//		bs.addBoard(board1);
+//		
+//		BoardVO board2 = new BoardVO();
+//		board2.setTitle("테스트 제목2");
+//		board2.setContent("테스트 내용2");
+//		board2.setScore("테스트 점수2");
+//		bs.addBoard(board2);
+//
+//		List<BoardVO> boardVOS = bs.readBoardList();
+//		for (BoardVO boardVO : boardVOS) {
+//			System.out.println("boardVO = " + boardVO.getTitle());
+//		}
+//	}
 	
 }
