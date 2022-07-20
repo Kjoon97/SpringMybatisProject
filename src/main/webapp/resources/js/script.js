@@ -18,7 +18,6 @@ function getMovies(url){
 
 function showMovies(data){
     main.innerHTML='';
-    i=1
   //  data = data.slice(0,10);
     console.log(data)            //영화 데이터 
 
@@ -33,8 +32,6 @@ function showMovies(data){
         
         <div class="movie-info">
             <h3>${title}</h3>
-            
-          <!-- <span class="${getColor(vote_average)}">${vote_average}</span> -->
         </div>
 
         <div class="overview">
@@ -44,7 +41,6 @@ function showMovies(data){
         </div>
         </div>`
         main.appendChild(movieE1);
-        i=i+1
     });
 }
 
