@@ -1,83 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<title>register</title>
-<style>
-th, label{
-    color: #fff;
-    font-family: inherit;
-    margin-left: 50px;   
-}
-table{
-   border-collapse: separate;
-   border-spacing: 30px;
-}
-#title{
-   width: 830px;/* 가로 사이즈 */
-   border-radius: 4px;
-   padding: 10px; /* 내부여백 */
-   padding-left: 12px;
-    
-}
-h2{
-   color:#fff;
-   font-family: inherit;
-   margin: 50px;
-}
-
-#content{
-   width: 830px;/* 가로 사이즈 */
-   height: 300px;
-   border-radius: 4px;
-   padding: 10px; /* 내부여백 */
-   padding-left: 12px;
-}
-body{
-    
-    background-color: #000000;
-    font-family: 'Poppins', sans-serif;
-    margin-top:150px;
-}
-
-select {
-	width: 830px; /* 가로 사이즈 */
-    padding: 10px; /* 내부여백 */
-    padding-left: 12px;
-    border: 1px solid #ddd;
-    background-size: 30px; /* 화살표 크기 */
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 12px;
-    color: #000;
-    outline:none;
-}
-</style>
-
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+	<title>게시물 등록</title>
 </head>
-<body>
-	<div align=center>
-		<h2>register</h2>
-		<form name=registerform action="http://localhost:8080/myweb/board/register/movie<c:out value="${movieId}"/>" method="post">
-		<table>	
-			<tr><th>title</th><td><input id ="title" type="text" name="title" autofocus placeholder="제목을 입력하세요"></td></tr>
-			<tr><th>content</th><td><textarea id ="content" type="text" name="content" placeholder="내용을 입력하세요"></textarea></td></tr>
-            <tr><th>score</th><td><select name="score">
-               <option value="10"> 10점 </option>
-               <option value="8"> 8점 </option>
-               <option value="6"> 6점 </option>
-               <option value="4"> 4점 </option>
-               <option value="2"> 2점 </option>
-            </select>
-            </td></tr>
-         </table>
-         <br>
-			<input class="btn btn-outline-warning" type="submit" name="submit" value="완료">&nbsp&nbsp&nbsp&nbsp
-			<input class="btn btn-outline-warning" type="reset" name="reset" value="다시 작성">
-		</form>
-	</div>
+<body style="margin:150px">
+<div class= "container">
+<form name="form1" method="post" action="board/register">
+	<label for="title">제목</label>
+    <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+        <div class="form-group">
+            <label for="content">내용</label>
+            <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
+        </div>
+	<label for="writer">계정</label>
+    <input type="text" class="form-control" id="writer" placeholder="계정을 입력하세요">
+	</form>
+	<br>
+	<br>
+	<div style="text-align: right;">
+        <button id="btn-save" class="btn btn-outline-dark">글 작성</button>
+    </div>
+</div>
+	<script src="${path}/resources/js/board.js"></script>
 </body>
 </html>

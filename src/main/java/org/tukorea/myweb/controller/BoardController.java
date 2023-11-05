@@ -1,87 +1,48 @@
 package org.tukorea.myweb.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.tukorea.myweb.domain.BoardVO;
 import org.tukorea.myweb.service.BoardService;
 
-import java.util.Date;
-import java.util.List;
+import lombok.RequiredArgsConstructor;
+
 
 @Controller
-@RequestMapping(value="/board")
+@RequiredArgsConstructor
 public class BoardController {
-	private Date registerDate;
-	private int boardnum;
 	
-	@Autowired
-	private BoardService bs;
+	private final BoardService bs;
 	
 	
-	//리스트 조회
-	@RequestMapping(value = {"/list/movie{movieId}"}, method = RequestMethod.GET)
-	public String getBoardList(@PathVariable String movieId, Model model) throws Exception {
-
-		float totalScore = bs.calculateTotalScore(movieId);
-		model.addAttribute("totalScore", totalScore);
-		model.addAttribute("movieId", movieId);
-		model.addAttribute("boards", bs.readBoardList(movieId));
+	@GetMapping(value="/")
+	public String home(Model model) throws Exception {
+		List<BoardVO> boardList = bs.readBoardList();
 		
-		List<BoardVO> boardList = bs.readBoardList(movieId);
-		for(BoardVO board : boardList) {
-			System.out.println(board.toString());
-		}
+		model.addAttribute("boards", boardList);
 		
-		 return "board/board_list";
+		
+		return "board/board_list";
 	}
 	
-	//게시판 등록
-	@RequestMapping(value = {"/register/movie{movieId}"}, method = RequestMethod.GET)
-	public String registerBoardGet(@PathVariable String movieId, Model model) throws Exception {
-
-		 model.addAttribute("movieId", movieId);
-		 return "board/board_register";
+	//게시물 등록
+	@GetMapping(value="/board/register")
+	public String registerBoard() throws Exception {
+		return "board/board_register";
 	}
 	
-	//게시판 등록
-	@RequestMapping(value = {"/register/movie{movieId}"}, method = RequestMethod.POST)
-	public String registerBoardPost(@PathVariable String movieId, @ModelAttribute("board") BoardVO vo) throws Exception {
-		vo.setMovieID(movieId);
-		bs.addBoard(vo);
-		return "redirect:/board/list/movie"+movieId;
+	//게시물 상세보기
+	@GetMapping(value="/board/detail/{id}")
+	public String detailBoard(@PathVariable int id, Model model) throws Exception {
+		BoardVO board = bs.readBoardDetail(id);
+		System.out.println(board.getContent());
+		model.addAttribute("board",board);
+		return "board/detail";
 	}
-	
-	//게시판 삭제
-	 @RequestMapping(value="/delete/movie{movieId}", method = RequestMethod.GET)
-	    public String deleteBoardGet(@PathVariable String movieId, @RequestParam("bno") int bno) throws Exception {
-	    	bs.deleteBoard(bno);
-	    	return "redirect:/board/list/movie"+movieId;
-	 }
-	 
-	 //게시판 수정
-	 @RequestMapping(value = "/modify/movie{movieId}", method = RequestMethod.GET)
-	    public String modifyBoardGet(@PathVariable String movieId, @RequestParam("bno") int bno, Model model) throws Exception {
-	    	BoardVO board = bs.readBoard(bno);
-		    boardnum = board.getBno();
-		    model.addAttribute("movieId",movieId);
-		    model.addAttribute("board", board);
-		 
-	        return "board/board_modify";
-	    }
-	 //게시판 수정  
-     @RequestMapping(value = "/modify/movie{movieId}", method = RequestMethod.POST)
-     public String modifyBoardPost(@ModelAttribute("board") BoardVO vo, @PathVariable String movieId) throws Exception {
-
-		 vo.setBno(boardnum);
-    	 bs.updateBoard(vo,movieId);
-    	 
-    	 return "redirect:/board/list/movie"+movieId;
-	 }
-
 }

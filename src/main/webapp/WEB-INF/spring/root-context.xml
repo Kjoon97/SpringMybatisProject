@@ -37,8 +37,10 @@
    
    <context:component-scan base-package="org.tukorea.myweb.persistence" />
    <context:component-scan base-package="org.tukorea.myweb.service" />
-   <context:component-scan base-package="org.tukorea.aop"></context:component-scan>
+   <context:component-scan base-package="org.tukorea.aop"/>
  
   	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-		
+
 </beans>
+
+
